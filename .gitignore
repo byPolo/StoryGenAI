@@ -1,0 +1,69 @@
+# Project-wide ignores for StoryGenAI (repo root).
+# Patterns without a leading slash match at any depth, so these cover
+# backend/ and any future frontend/ without needing per-folder copies.
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+build/
+dist/
+wheels/
+*.egg-info/
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Secrets and local config
+# NOTE: .env holds DATABASE_URL and ANTHROPIC_API_KEY - never commit it.
+# Commit .env.example instead, with the keys but no values.
+.env
+.env.*
+!.env.example
+
+# Local database files (SQLite) and its write-ahead/journal sidecars
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Node / frontend build output
+node_modules/
+.next/
+.nuxt/
+.svelte-kit/
+.vite/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# Test, lint and type-check caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# Logs
+*.log
+logs/
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
