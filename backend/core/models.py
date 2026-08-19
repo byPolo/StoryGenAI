@@ -7,7 +7,7 @@ class StoryOptionLLM(BaseModel):
 
 class StoryNodeLLM(BaseModel):
     content: str = Field(description="The main content of th story node")
-    isEndingw: bool = Field(description="Whether this node is an ending node")
+    isEnding: bool = Field(description="Whether this node is an ending node")
     isWinningEnding: bool = Field(description="Whether this node is a winning node")
     options: Optional[List[StoryOptionLLM]] = Field(default=None, description="The options this node")
 
