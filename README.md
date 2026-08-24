@@ -111,20 +111,3 @@ Runs on `http://localhost:5173`. Vite proxies `/api` to the backend, so no CORS 
 `.env` is gitignored. Never commit it.
 
 ---
-
-## Deploying to AWS
-
-Planned target:
-
-- **Database** — RDS for Postgres
-- **Backend** — containerised and run on ECS Fargate behind an Application Load Balancer
-- **Frontend** — static build on S3 with CloudFront in front
-- **Secrets** — `DATABASE_URL` and `ANTHROPIC_API_KEY` in Secrets Manager, injected as task environment variables
-
-Two things need changing before this is production ready. `create_tables()` runs on import in `main.py`, which should become a migration step. Generation runs in a FastAPI `BackgroundTasks` worker tied to the request process, which does not survive a container restart and should move to a queue.
-
----
-
-## Notes
-
-This is a portfolio project built to practise structured LLM output, recursive data modelling and async job handling. The story tree is the interesting part: getting a model to reliably emit a nested, self-referential structure that maps cleanly onto relational rows.
