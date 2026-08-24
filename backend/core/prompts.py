@@ -20,6 +20,8 @@ STORY_PROMPT = """
 
                 Don't simplify or omit any part of the story structure. 
                 Don't add any text outside of the JSON structure.
+                Don't use Oxford commas
+                Don't use markdown, just plain text
                 """
 
 json_structure = """

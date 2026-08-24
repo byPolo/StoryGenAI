@@ -1,111 +1,133 @@
+/* ── Passage ──────────────────────────────────────────────────────────────
+   Tokens, reset and base typography.
+   Component styles live in App.css.
+   ───────────────────────────────────────────────────────────────────────── */
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Paper & ink. Cool grey-green stock, not cream. */
+  --paper: #e8eae5;
+  --surface: #f2f3ef;
+  --ink: #171b18;
+  --ink-soft: #5c645d;
+  --ink-faint: #8b938c;
+  --rule: #cdd2c9;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* One accent: printer's ink blue. Used only for choice and focus. */
+  --mark: #2b4c7e;
+  --mark-soft: rgba(43, 76, 126, 0.09);
+  --danger: #8c3a2e;
+  --danger-soft: rgba(140, 58, 46, 0.08);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  --display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --read: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  /* Spacing scale */
+  --s1: 0.5rem;
+  --s2: 0.75rem;
+  --s3: 1rem;
+  --s4: 1.5rem;
+  --s5: 2.5rem;
+  --s6: 4rem;
+
+  --measure: 34rem;
+
   color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+    --paper: #14171a;
+    --surface: #1a1e21;
+    --ink: #dfe4e0;
+    --ink-soft: #98a19a;
+    --ink-faint: #6b746d;
+    --rule: #2a3034;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+    --mark: #86abda;
+    --mark-soft: rgba(134, 171, 218, 0.12);
+    --danger: #d98a78;
+    --danger-soft: rgba(217, 138, 120, 0.1);
   }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1rem/1.6 var(--display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
 p {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  margin: 0;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* The running head. Deliberately small — the passage is the hero. */
+h1 {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+h2 {
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--mark);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

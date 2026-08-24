@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react";
 
-function Story({story, onNewStory}) {
+function StoryGame({story, onNewStory}) {
     const [currentNodeId, setCurrentNodeId] = useState(null)
     const [currentNode, setCurrentNode] = useState(null)
     const [options, setOptions] = useState([])
@@ -15,20 +15,25 @@ function Story({story, onNewStory}) {
     }, [story])
 
     useEffect(() => {
-        if (currentNode && story && story.all_nodes) {
-            const node = story.all_node[currentNodeId]
+        if (currentNodeId && story && story.all_nodes) {
+            const node = story.all_nodes[currentNodeId]
+            if (!node) return
 
             setCurrentNode(node)
             setIsEnding(node.is_ending)
             setIsWinninigEnding(node.is_winning_ending)
-        }
 
-        if (!node.is_ending && node.options && node.options.length > 0) {
-            setOptions(node.options)
-        } else {
-            setOptions([])
+            if (!node.is_ending && node.options && node.options.length > 0) {
+                setOptions(node.options)
+            } else {
+                setOptions([])
+            }
         }
     }, [currentNodeId, story])
+
+    const chooseOption = (optionId) => {
+        setCurrentNodeId(optionId)
+    }
 
     const restartStory = () => {
         if (story && story.root_node) {
